@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         NSLog(@"-[Car init]: %@", make);
-        _make = [make copy];
+        _make = [make copy]; // 'copy' restarts the retain count
     }
     return self;
 }
@@ -28,13 +28,15 @@
 {
     NSLog(@"-[Car dealloc]: %@", self);
     // TODO: Implement dealloc with MRC
+    [_make release];
+    [super dealloc];
 }
 
 - (NSString *)description
 {
     // TODO: Implement a standard autoreleasing method.
     NSString *description = [[NSString alloc] initWithFormat:@"Car: %@", self.make];
-    return description;
+    return [description autorelease];
 }
 
 @end
