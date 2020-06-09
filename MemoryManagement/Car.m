@@ -22,7 +22,18 @@
 }
 
 // TODO: Implement autoreleased class car method
++ (instancetype)car
+{
+//    Car *car = [[self alloc]initWithMake:@"Toyota"];
+//    return [car autorelease];
 
+    return [self carWithMake:@"Toyota"];
+}
++ (instancetype)carWithMake:(NSString *)make
+{
+    Car *car = [[self alloc]initWithMake:make];
+    return [car autorelease];
+}
 
 - (void)dealloc
 {
